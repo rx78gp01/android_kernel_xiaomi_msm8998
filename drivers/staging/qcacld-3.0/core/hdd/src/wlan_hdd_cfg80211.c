@@ -19082,6 +19082,7 @@ disconnected:
  * Return: string conversion of reason code, if match found;
  *         "Unknown" otherwise.
  */
+#ifdef WLAN_DEBUG
 static const char *hdd_ieee80211_reason_code_to_str(uint16_t reason)
 {
 	switch (reason) {
@@ -19136,6 +19137,7 @@ static const char *hdd_ieee80211_reason_code_to_str(uint16_t reason)
 		return "Unknown";
 	}
 }
+#endif
 
 /**
  * hdd_print_netdev_txq_status() - print netdev tx queue status
@@ -19145,6 +19147,7 @@ static const char *hdd_ieee80211_reason_code_to_str(uint16_t reason)
  *
  * Return: none
  */
+#ifdef WLAN_DEBUG
 static void hdd_print_netdev_txq_status(struct net_device *dev)
 {
 	unsigned int i;
@@ -19158,6 +19161,9 @@ static void hdd_print_netdev_txq_status(struct net_device *dev)
 		hdd_info("netdev tx queue[%u] state: 0x%lx", i, txq->state);
 	}
 }
+#else
+#define hdd_print_netdev_txq_status(dev) (0)
+#endif
 
 /**
  * __wlan_hdd_cfg80211_disconnect() - cfg80211 disconnect api

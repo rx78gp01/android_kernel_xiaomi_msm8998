@@ -37,9 +37,10 @@ endif
 # Make WLAN as open-source driver by default
 WLAN_OPEN_SOURCE := 1
 
-ifeq ($(KERNEL_BUILD), 0)
 	# These are configurable via Kconfig for kernel-based builds
 	# Need to explicitly configure for Android-based builds
+
+	CONFIG_WLAN_FEATURE_11W := y
 
 	ifneq ($(DEVELOPER_DISABLE_BUILD_TIMESTAMP),y)
 	ifneq ($(WLAN_DISABLE_BUILD_TAG),y)
@@ -244,7 +245,6 @@ endif
 	# Flag to enable MCC to SCC switch feature
 	CONFIG_MCC_TO_SCC_SWITCH := y
 
-endif
 
 
 # As per target team, build is done as follows:

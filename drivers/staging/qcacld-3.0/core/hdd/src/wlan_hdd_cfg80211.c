@@ -19147,9 +19147,9 @@ static const char *hdd_ieee80211_reason_code_to_str(uint16_t reason)
  *
  * Return: none
  */
-#ifdef WLAN_DEBUG
 static void hdd_print_netdev_txq_status(struct net_device *dev)
 {
+#ifdef WLAN_DEBUG
 	unsigned int i;
 
 	if (!dev)
@@ -19160,10 +19160,8 @@ static void hdd_print_netdev_txq_status(struct net_device *dev)
 
 		hdd_info("netdev tx queue[%u] state: 0x%lx", i, txq->state);
 	}
-}
-#else
-#define hdd_print_netdev_txq_status(dev) (0)
 #endif
+}
 
 /**
  * __wlan_hdd_cfg80211_disconnect() - cfg80211 disconnect api

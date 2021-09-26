@@ -59,13 +59,6 @@ uint8_t *mac_trace_get_lim_sme_state(uint16_t limState);
 uint8_t *mac_trace_get_lim_mlm_state(uint16_t mlmState);
 uint8_t *mac_trace_get_tl_state(uint16_t tlState);
 
-#else
-#define mac_trace_get_neighbour_roam_state(neighbourRoamState) (0)
-#define mac_trace_getcsr_roam_state(csr_roamState) (0)
-#define mac_trace_getcsr_roam_sub_state(csr_roamSubState) (0)
-#define mac_trace_get_lim_sme_state(limState) (0)
-#define mac_trace_get_lim_mlm_state(mlmState) (0)
-#define mac_trace_get_tl_state(tlState) (0)
 #endif
 
 #endif

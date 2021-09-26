@@ -20923,7 +20923,9 @@ QDF_STATUS
 csr_roam_offload_scan(tpAniSirGlobal mac_ctx, uint8_t session_id,
 		      uint8_t command, uint8_t reason)
 {
+#ifdef TRACE_RECORD
 	uint8_t *state = NULL;
+#endif
 	tSirRoamOffloadScanReq *req_buf;
 	QDF_STATUS status = QDF_STATUS_SUCCESS;
 	tCsrRoamSession *session = CSR_GET_SESSION(mac_ctx, session_id);
@@ -21038,11 +21040,13 @@ csr_roam_offload_scan(tpAniSirGlobal mac_ctx, uint8_t session_id,
 	     eCSR_NEIGHBOR_ROAM_STATE_INIT) &&
 	    (command != ROAM_SCAN_OFFLOAD_STOP) &&
 	    (reason != REASON_ROAM_SET_BLACKLIST_BSSID)) {
+#ifdef TRACE_RECORD
 		state = mac_trace_get_neighbour_roam_state(
 				roam_info->neighborRoamState);
 		QDF_TRACE(QDF_MODULE_ID_SME, QDF_TRACE_LEVEL_DEBUG,
 			 FL("Scan Command not sent to FW state=%s and cmd=%d"),
 			  state,  command);
+#endif
 		return QDF_STATUS_E_FAILURE;
 	}
 

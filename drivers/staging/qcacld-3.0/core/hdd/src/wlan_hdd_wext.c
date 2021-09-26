@@ -9434,12 +9434,13 @@ static int __iw_get_char_setnone(struct net_device *dev,
 				len += buf;
 				break;
 			}
+
 			pHddStaCtx =
 				WLAN_HDD_GET_STATION_CTX_PTR(useAdapter);
 
-
 			buf =
 				scnprintf(extra + len, WE_MAX_STR_LEN - len,
+#ifdef TRACE_RECORD
 					  "\n HDD Conn State - %s "
 					  "\n\n SME State:"
 					  "\n Neighbour Roam State - %s"
@@ -9456,12 +9457,18 @@ static int __iw_get_char_setnone(struct net_device *dev,
 					  mac_trace_getcsr_roam_sub_state
 						  (sme_get_current_roam_sub_state
 							  (hHal, useAdapter->sessionId))
+#else
+					  "\n HDD Conn State - %s",
+					  hdd_connection_state_string
+						  (pHddStaCtx->conn_info.connState)
+#endif
 					  );
 			len += buf;
 			adapter_num++;
 		}
 
 		if (hHal) {
+#ifdef TRACE_RECORD
 			/* Printing Lim State starting with global lim states */
 			buf =
 				scnprintf(extra + len, WE_MAX_STR_LEN - len,
@@ -9474,9 +9481,11 @@ static int __iw_get_char_setnone(struct net_device *dev,
 						  (sme_get_lim_sme_state(hHal))
 					  );
 			len += buf;
+#endif
 
 			while (check < 3 && count < 255) {
 				if (sme_is_lim_session_valid(hHal, count)) {
+#ifdef TRACE_RECORD
 					buf =
 						scnprintf(extra + len,
 							  WE_MAX_STR_LEN -
@@ -9494,6 +9503,7 @@ static int __iw_get_char_setnone(struct net_device *dev,
 							  );
 
 					len += buf;
+#endif
 					check++;
 				}
 				count++;

@@ -278,11 +278,11 @@ static void htt_t2h_stats_rx_rate_stats_print_v2(wlan_dbg_rx_rate_info_v2_t *
 	rx_rate_stats_print_cmn(rx_phy_info, concise);
 }
 
-#ifdef WLAN_DEBUG
 static void
 htt_t2h_stats_pdev_stats_print(struct wlan_dbg_stats *wlan_pdev_stats,
 			       int concise)
 {
+#ifdef WLAN_DEBUG
 	struct wlan_dbg_tx_stats *tx = &wlan_pdev_stats->tx;
 	struct wlan_dbg_rx_stats *rx = &wlan_pdev_stats->rx;
 
@@ -358,11 +358,8 @@ htt_t2h_stats_pdev_stats_print(struct wlan_dbg_stats *wlan_pdev_stats,
 	qdf_debug("phy_errs dropped  :\t%d", rx->phy_err_drop);
 	/* Number of mpdu errors - FCS, MIC, ENC etc. */
 	qdf_debug("mpdu_errs         :\t%d", rx->mpdu_errs);
-
-}
-#else
-#define htt_t2h_stats_pdev_stats_print(wlan_pdev_stats, concise) (0)
 #endif
+}
 
 static void
 htt_t2h_stats_rx_reorder_stats_print(struct rx_reorder_stats *stats_ptr,

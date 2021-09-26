@@ -6854,9 +6854,9 @@ static void hdd_cfg_print_mws_coex(hdd_context_t *hdd_ctx)
  *
  * Return: None
  */
-#ifdef WLAN_DEBUG
 static void hdd_cfg_print_action_oui(hdd_context_t *hdd_ctx)
 {
+#ifdef WLAN_DEBUG
 	struct hdd_config *config = hdd_ctx->config;
 
 	hdd_debug("Name = [%s] value = [%u]",
@@ -6890,11 +6890,8 @@ static void hdd_cfg_print_action_oui(hdd_context_t *hdd_ctx)
 	hdd_debug("Name = [%s] value = [%s]",
 		  CFG_ACTION_OUI_DISABLE_AGGRESSIVE_EDCA,
 		  config->action_oui_disable_aggressive_edca);
-
-}
-#else
-#define hdd_cfg_print_action_oui(hdd_ctx) (0)
 #endif
+}
 
 /**
  * hdd_cfg_print_btc_params() - print btc param values

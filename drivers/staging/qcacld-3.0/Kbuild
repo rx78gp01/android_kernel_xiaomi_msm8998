@@ -37,6 +37,8 @@ endif
 # Make WLAN as open-source driver by default
 WLAN_OPEN_SOURCE := 1
 
+DEVELOPER_DISABLE_BUILD_TIMESTAMP := y
+
 	# These are configurable via Kconfig for kernel-based builds
 	# Need to explicitly configure for Android-based builds
 
@@ -245,7 +247,7 @@ endif
 	# Flag to enable MCC to SCC switch feature
 	CONFIG_MCC_TO_SCC_SWITCH := y
 
-
+TARGET_BUILD_VARIANT := user
 
 # As per target team, build is done as follows:
 # Defconfig : build with default flags
